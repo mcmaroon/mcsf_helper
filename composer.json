@@ -1,0 +1,25 @@
+{
+    "name": "mcmaroon/mcsf_helper",
+    "description": "Symfony helper",
+    "keywords": ["symfony", "helper"],
+    "homepage": "https://github.com/mcmaroon/mcsf_helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mcmaroon"
+        }
+    ],
+    "require-dev": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "MCSF\\Helper\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
