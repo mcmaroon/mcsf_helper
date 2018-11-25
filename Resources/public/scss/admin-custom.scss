@@ -1,0 +1,189 @@
+body {
+    padding-top: ($spacer * 4);
+    padding-bottom: ($spacer * 4);
+}
+
+.navbar {
+    @include box-shadow($btn-box-shadow);
+    @extend .py-1;
+}
+
+.fa {
+    &.fa-success {
+        color: theme-color("success");
+    }
+    &.fa-warning {
+        color: theme-color("warning");
+    }
+    &.fa-danger {
+        color: theme-color("danger");
+    }
+    &.fa-info {
+        color: theme-color("info");
+    }
+}
+
+.form-buttons-wrapper {
+    @extend .btn-group;
+    @extend .btn-group-sm;
+    body.fixed & {
+        position: fixed;
+        z-index: $zindex-dropdown;
+        top: ($spacer * 4);
+        left: $card-deck-margin;
+    }
+}
+
+.floatThead-container {
+    .floatThead-table {
+        background-color: $body-bg;
+    }
+}
+
+table.table-index {    
+    .filter-wrapper {
+        a {
+            text-transform: uppercase;
+            &:before {
+                @extend .fa;
+                @extend .px-1;
+            }
+        }
+        .form-control {
+            @extend .px-1;
+            padding-top: 1px;
+            padding-bottom: 1px;
+        }
+        @extend .px-1;
+        &[data-filter-wrapper-type="bulkall"] {
+            max-width: 50px;
+        }
+        &[data-filter-wrapper-type="simple"] a:before {
+            content: $fa-var-sort;
+        }
+        &[data-filter-wrapper-type="double"] a:before {
+            content: $fa-var-calendar;
+        }
+    }
+}
+
+.overflow-y {
+    max-height: 288px;
+    overflow-y: scroll;
+    &.large {
+        max-height: 560px;
+    }
+}
+
+.tree-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    .tree-leaf {
+        background-color: transparent;
+        border: none;
+        @extend .mx-1;
+    }
+    .table-tree-list {
+        margin: 0;
+        tr {
+            td {
+                white-space: unset;
+                &.id {
+                    width: 30px;
+                }
+                &.name {
+                    width: 300px;
+                }
+                &.image {
+                    width: 60px;
+                }
+            }
+        }
+    }
+    .nav {
+        > li {
+            > a {
+                @extend .px-1
+            }
+        }
+    }
+}
+
+#form-stat {
+    #form-stat-checkboxes {
+        max-height: 288px;
+        overflow-y: scroll;
+        margin: $nav-link-padding-y 0;
+        label {
+            user-select: none;
+        }
+    }
+}
+#stat {
+    width: 100%;
+    min-height: 400px;
+    &.preloader {
+        @extend .preloader;
+    }
+}
+
+.preloader {
+    padding-top: $nav-link-padding-y;
+    background: transparent url("../css/images/preloader.gif") no-repeat scroll 55% 0%;
+}
+
+.map-sync {
+    &.map-sync-active {
+        td {
+            background-color: theme-color("info") !important;
+        }
+    }
+}
+
+.preview {
+    cursor: help;
+    @extend .px-1;
+}
+
+.file-upload-wrapper {
+    @extend .card;
+    @extend .bg-light;
+    img {
+        margin: 0 auto;
+    }
+    .file-upload-wrapper-form {
+        margin-top: $nav-link-padding-y;
+        @extend .p-2;
+    }
+}
+
+.uploadmultiple {
+    .form-group {
+        > label {
+            display: none;
+        }
+    }
+}
+
+#prev-modal{
+    #preview {
+        table {
+            td {
+                white-space: normal;
+                &:first-of-type {
+                    min-width: 160px;
+                }
+            }
+        }
+        #preview-carousel-photos {
+            .carousel-inner .item img {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+.ui-state-highlight {
+    border: none;
+}

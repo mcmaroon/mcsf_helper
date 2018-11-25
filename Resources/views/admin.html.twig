@@ -1,0 +1,81 @@
+{% extends "AppAppBundle::layout.html.twig" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block top %}
+    {% if is_granted('ROLE_ADMINISTRATOR') or is_granted('ROLE_SUPER_ADMIN') %}
+
+        {% set adminMenu = knp_menu_get('adminMenu') %}
+
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+
+            <a class="navbar-brand" href="{{ url('homepage') }}" target="_blank" title="{{ 'adminmenu.front'|trans }}"><span class="fa fa-home fa-inverse"></span></a>
+            <a class="navbar-brand" href="{{ url('admin') }}" title="{{ 'adminmenu.home'|trans }}"><span class="fa fa-area-chart"></span></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>           
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                {{ knp_menu_render(adminMenu) }}
+
+                <ul class="nav navbar-nav">
+
+                    {% if locales is defined %}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="icon icon-direction-left fa fa-flag fa-inverse"></span>
+                                {{ 'global.language.default'|trans }}
+                                ( {{ app.request.locale }} )
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for key in locales %}
+                                    {% set link = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': key})) %}
+                                    <li class="dropdown-item">
+                                        <a class="{% if key == app.request.locale %}current{% endif %}" href="{{ link }}">
+                                            {{ ('global.language.'~key)|trans }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.userName|default('') }}<span class="caret"></span></a>
+                            {% block top_dropdown %}
+                            <ul class="dropdown-menu">
+                                {% set logoutRouting = null %}
+                                {% if 'security_logout'|routeExists %}
+                                    {% set logoutRouting = url('security_logout') %}
+                                {% endif %}
+                                {% if 'fos_user_security_logout'|routeExists %}
+                                    {% set logoutRouting = url('fos_user_security_logout') %}
+                                {% endif %}
+                                {% if logoutRouting is not null  %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ logoutRouting }}">{{ 'adminmenu.profile.logout'|trans }}</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endblock top_dropdown %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    {% endif %}    
+{% endblock top %}
+
+{% block body %}{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets '@admin_css' output='css/admin.css' combine=true filter='?uglifycss' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascriptsbody %}
+    {% javascripts '@jquery_js' '@bootstrap_js' '@plugin_js' '@admin_js' output='js/admin.js' combine=true filter='?uglifyjs2' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
