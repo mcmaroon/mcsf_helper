@@ -1,8 +1,8 @@
 {
-    "name": "mcmaroon/mcsf_helper",
-    "description": "Symfony helper",
-    "keywords": ["symfony", "helper"],
-    "homepage": "https://github.com/mcmaroon/mcsf_helper",
+    "name": "mcmaroon/mcsf_helper_bundle",
+    "description": "Symfony helper bunle",
+    "keywords": ["symfony", "bundle", "helper"],
+    "homepage": "https://github.com/mcmaroon/mcsf_helper_bundle",
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MCSF\\Helper\\": ""
+            "MCSF\\HelperBundle\\": ""
         }
     },
     "autoload-dev": {
