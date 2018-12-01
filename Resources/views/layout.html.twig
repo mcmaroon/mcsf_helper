@@ -26,12 +26,10 @@
         </script>
 
         {% block javascriptshead %}
-        {#
             {% set googleMapApiKey = 'google_map_api_key'|parameter %}
             {% if googleMapApiKey is not null %}
                 <script src="https://maps.googleapis.com/maps/api/js?key={{ googleMapApiKey|trim }}"></script>
             {% endif %}
-        #}
         {% endblock javascriptshead %}
 
     </head>
